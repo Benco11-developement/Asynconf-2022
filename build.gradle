@@ -1,0 +1,38 @@
+plugins {
+	id 'java'
+  id "application"
+}
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+
+archivesBaseName = project.archives_base_name
+version = project.app_version
+group = project.maven_group
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 17
+}
+
+ext {
+   javaMainClass = "${project.maven_group}.${archivesBaseName}.Main"
+}
+
+application {
+    mainClassName = javaMainClass
+}
+
+jar {
+	manifest {
+        attributes "Main-Class": javaMainClass
+    }
+}
+
+java {}
