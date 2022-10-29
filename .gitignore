@@ -1,0 +1,6 @@
+.cache
+.gradle
+.idea
+build
+.replit
+replit.nix

@@ -1,14 +1,4 @@
-## Configuring
-* `gradle.properties`
-  * `maven_group` is the groupId so set it to the group id of your project,
-    for example `com.replit`  
-  * `archives_base_name` is the archive base name, so set it to the archive name,
-    for example `java17withgradle`
+# Aïe Aïe Aïe
 
-* `build.gradle`
-  * To set the entrypoint class edit the following lines
-      ```java
-      ext {
-         javaMainClass = "${project.maven_group}.${archivesBaseName}.CLASS_HERE"
-      }
-      ```
+Je n'ai pas fait tous les tests unitaires de l'exo 5 car trop long... 
+De même pour l'exo 3... Pardonnez-moi :(

@@ -1,38 +1,52 @@
 plugins {
-	id 'java'
-  id "application"
+    id 'java'
+    id "application"
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+version '1.0'
+group 'fr.benco11'
+archivesBaseName = 'Asynconf-2022'
 
-archivesBaseName = project.archives_base_name
-version = project.app_version
-group = project.maven_group
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+compileJava.options.encoding = 'UTF-8'
+
+mainClassName = 'fr.benco11.asynconf.Asynconf2022'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	
+    implementation 'com.google.code.gson:gson:2.10'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
-}
-
-ext {
-   javaMainClass = "${project.maven_group}.${archivesBaseName}.Main"
-}
-
-application {
-    mainClassName = javaMainClass
+    it.options.release = 17
 }
 
 jar {
-	manifest {
-        attributes "Main-Class": javaMainClass
+    manifest {
+        attributes "Main-Class": mainClassName
     }
 }
 
-java {}
+run {
+    standardInput = System.in
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += "--enable-preview"
+}
+tasks.withType(Test) {
+    jvmArgs += "--enable-preview"
+}
+tasks.withType(JavaExec) {
+    jvmArgs += "--enable-preview"
+}
